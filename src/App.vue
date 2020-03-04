@@ -1,33 +1,64 @@
 <template>
-  <div id="app">
-    <!--    <div id="nav">-->
-    <!--      <router-link to="/">Home</router-link> |-->
-    <!--      <router-link to="/about">About</router-link>-->
-    <!--    </div>-->
-    <!--    <router-view/>-->
-    <H>Hello World</H>
+  <div>
+    <vue-particles
+      color="#ffcbea"
+      :particleOpacity="0.7"
+      :particlesNumber="120"
+      shapeType="polygon"
+      :particleSize="5"
+      linesColor="#ffcbea"
+      :linesWidth="2"
+      :lineLinked="true"
+      :lineOpacity="0.4"
+      :linesDistance="150"
+      :moveSpeed="3"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="push"
+      class="lizi">
+
+    </vue-particles>
+    <div style="position: absolute;top: 0;left: 0;min-height: 100%;overflow-y: scroll" id="app" @scroll="scrollEvent">
+      <router-view/>
+    </div>
   </div>
+
 </template>
+<script>
+  import bus from './assets/js/bus.js'
 
-<style lang="scss">
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  #nav {
-    padding: 30px;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
+  export default {
+    methods: {
+      scrollEvent (e) {
+        if (e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight) {
+          // this.parmasList.pageNum = this.parmasList.pageNum + 1
+          // this.send(this.parmasList)
+          // alert('a')
+          bus.$emit('end', true)
+        } else {
+          bus.$emit('end', false)
+        }
       }
     }
   }
+</script>
+<style lang="scss">
+  #particles-js {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .lizi {
+    background-size: 100%;
+
+  }
+
+  .test {
+    background: #ffcbea;
+  }
+
+  @import "./assets/css/main.css";
+  @import "./assets/css/theme-green/color-green.css";
 </style>

@@ -8,7 +8,23 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/index',
+        name: 'Index',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Index.vue')
+      },
+      {
+        path: 'productInfo',
+        name: 'ProductInfo',
+        component: () => import('../views/ProductInfo')
+      },
+      {
+        path: '/',
+        redirect: '/index'
+      }
+    ]
   },
   {
     path: '/about',
@@ -17,6 +33,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login')
   }
 ]
 
@@ -25,5 +46,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 
 export default router
