@@ -9,8 +9,9 @@
       <!--名称 end-->
       <!--搜索框 start-->
       <div style="text-align: center;width: 34%">
-        <el-input placeholder="搜索商品名、商品描述" v-model="input5" class="input-with-select">
-          <el-button style="color: #ffffff;background: #f84e4e" slot="append" icon="el-icon-search">搜索</el-button>
+        <el-input placeholder="搜索商品名、商品描述" v-model="searchKey" class="input-with-select">
+          <el-button style="color: #ffffff;background: #f84e4e" slot="append" icon="el-icon-search" @click="search">搜索
+          </el-button>
         </el-input>
         <!--        <input type="text" placeholder="输入你想查询的内容" class="g_input_search">-->
       </div>
@@ -19,8 +20,12 @@
       <div style="text-align: center;margin-left:10%;width: 15%;display: flex">
         <a href="/login" v-show="!isLogin" type="info" plain>登录</a>
         <a v-show="!isLogin" type="danger" plain>注册</a>
-        <a href="#" v-show="isLogin" style="margin-top: 2%;text-align: center">别说话，爱我</a>
-        <a href="#" v-show="isLogin" style="margin-left: 20px;margin-top: 2%;text-align: center">购物车</a>
+        <a href="#" v-show="isLogin" style="margin-top: 2%;text-align: center">{{userName}}</a>
+        <a href="/shopCart" v-show="isLogin"
+           style="margin-left: 20px;margin-top: 2%;text-align: center">购物车</a>
+        <a href="/#" v-show="isLogin"
+           @click="quit"
+           style="margin-left: 20px;margin-top: 2%;text-align: center">退出</a>
       </div>
       <!--登录/注册按钮 end-->
     </div>
@@ -67,11 +72,13 @@
 </template>
 
 <script>
+  import bus from '../assets/js/bus.js'
+
   export default {
     name: 'Header',
     data () {
       return {
-        input5: '',
+        searchKey: '',
         menu: [
           {
             id: 0,
@@ -79,6 +86,7 @@
             path: '/index'
           }
         ],
+        userName: '',
         logo: require('../assets/small.png'),
         isLogin: true
       }
@@ -110,23 +118,43 @@
             query: {
               typeId: id
             },
-            path: 'index'
+            path: '/'
           })
-          this.$router.go(0)
+          // this.$router.go(0)
         } else {
-          this.$router.push('/index')
-          this.$router.go(0)
+          this.$router.push('/')
+          // this.$router.go(0)
         }
-
+        bus.$emit('menu-click', true)
+      },
+      search () {
+        this.$router.push({
+          query: {
+            search: this.searchKey
+          },
+          path: '/index'
+        })
+        bus.$emit('search', {
+          key: true,
+          value: this.searchKey
+        })
+      },
+      quit () {
+        sessionStorage.removeItem('isLogin')
+        sessionStorage.removeItem('userName')
+        this.$axios.get('/api/customer/logout')
+        this.$router.replace('/login')
       }
     },
     activated () {
       this.getProductTypes()
       this.isLogin = sessionStorage.getItem('isLogin')
+      this.userName = sessionStorage.getItem('userName')
     },
     created () {
       this.getProductTypes()
       this.isLogin = sessionStorage.getItem('isLogin')
+      this.userName = sessionStorage.getItem('userName')
     }
   }
 </script>
@@ -186,6 +214,10 @@
         }
       }
     }
+  }
+
+  a:hover {
+    color: #f64d4d;
   }
 
 </style>

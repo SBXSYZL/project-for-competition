@@ -1,25 +1,25 @@
 <template>
   <div>
-    <vue-particles
-      color="#ffcbea"
-      :particleOpacity="0.7"
-      :particlesNumber="120"
-      shapeType="polygon"
-      :particleSize="5"
-      linesColor="#ffcbea"
-      :linesWidth="2"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
-      class="lizi">
+        <vue-particles
+          color="#ffcbea"
+          :particleOpacity="0.7"
+          :particlesNumber="120"
+          shapeType="polygon"
+          :particleSize="5"
+          linesColor="#ffcbea"
+          :linesWidth="2"
+          :lineLinked="true"
+          :lineOpacity="0.4"
+          :linesDistance="150"
+          :moveSpeed="3"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="push"
+          class="lizi">
 
-    </vue-particles>
-    <div style="position: absolute;top: 0;left: 0;min-height: 100%;overflow-y: scroll" id="app" @scroll="scrollEvent">
+        </vue-particles>
+    <div class="my-main-body" style="overflow: scroll;" id="app" @scroll="scrollEvent">
       <router-view/>
     </div>
   </div>
@@ -43,7 +43,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style scoped lang="scss">
   #particles-js {
     width: 100%;
     height: 100%;
@@ -57,6 +57,14 @@
 
   .test {
     background: #ffcbea;
+  }
+
+  .my-main-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+
   }
 
   @import "./assets/css/main.css";
