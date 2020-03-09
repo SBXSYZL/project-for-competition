@@ -19,7 +19,7 @@
       <!--登录/注册按钮 start-->
       <div style="text-align: center;margin-left:10%;width: 15%;display: flex">
         <a href="/login" v-show="!isLogin" type="info" plain>登录</a>
-        <a v-show="!isLogin" type="danger" plain>注册</a>
+        <a href="/registered" style="margin-left: 20px" v-show="!isLogin" type="danger" plain>注册</a>
         <a href="#" v-show="isLogin" style="margin-top: 2%;text-align: center">{{userName}}</a>
         <a href="/shopCart" v-show="isLogin"
            style="margin-left: 20px;margin-top: 2%;text-align: center">购物车</a>

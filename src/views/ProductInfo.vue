@@ -92,7 +92,7 @@
               {{item.userName}}
             </div>
             <p class="comment-content">:</p>
-            <div style="width: 90%">
+            <div style="width: 90%;text-align: start">
               {{item.comment}}
             </div>
             <div>

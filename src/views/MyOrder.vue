@@ -24,7 +24,7 @@
                   <div style="width: 90%;color: #a3a3a3;padding-left: 10px">
                     <span>商品：{{item.productName}} </span><br>
                     <span>金额：{{item.total}}</span><br>
-                    <span>单价：{{item.price}} </span>
+                    <span>单价：{{item.price}} </span><br>
                     <span>数量：{{item.quantity}}</span><br>
                     <span>付款人：{{item.userName}}</span>
                   </div>

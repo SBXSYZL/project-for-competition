@@ -42,7 +42,7 @@
 
           </div>
           <div style="width: 100%;padding-top: 10px">
-            <a href="#" style="color: #20a0ff">没有账号？注册一个</a>
+            <a href="/registered" style="color: #20a0ff">没有账号？注册一个</a>
           </div>
         </el-form>
       </div>

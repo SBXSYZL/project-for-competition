@@ -40,6 +40,10 @@ const routes = [
     component: () => import('../views/Login')
   },
   {
+    path: '/registered',
+    component: () => import('../views/Registered')
+  },
+  {
     path: '/shopCart',
     component: () => import('../views/ShopCart.vue')
   },
