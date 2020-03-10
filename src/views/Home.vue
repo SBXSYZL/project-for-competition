@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import $ from 'jquery'
   import Header from '../components/Header'
   import SideBar from '../components/SideBar'
   import Bus from '../assets/js/bus.js'

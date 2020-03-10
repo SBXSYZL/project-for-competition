@@ -9,7 +9,6 @@ import './assets/css/icon.css'
 import './assets/js/directives'
 import 'element-ui/lib/theme-chalk/index.css' // 默认主题
 import VueParticles from 'vue-particles'
-import VueMagnify from 'vue-magnify'
 
 Vue.config.productionTip = false
 
@@ -18,7 +17,6 @@ Vue.use(Element, {
 })
 
 Vue.use(VueParticles)
-Vue.use(VueMagnify)
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$axios = axios
 
